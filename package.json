@@ -1,0 +1,42 @@
+{
+  "name": "super-bot",
+  "version": "2.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc --build && node cp",
+    "start": "ts-node app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SakuraBot-dev/SuperBot.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SakuraBot-dev/SuperBot/issues"
+  },
+  "homepage": "https://github.com/SakuraBot-dev/SuperBot#readme",
+  "devDependencies": {
+    "@types/events": "^3.0.0",
+    "@types/got": "^9.6.11",
+    "@types/log4js": "^2.3.5",
+    "@types/node": "^14.11.10",
+    "@types/uuid": "^8.3.0",
+    "@types/websocket": "^1.0.1"
+  },
+  "dependencies": {
+    "@types/request": "^2.48.5",
+    "arg": "^5.0.0",
+    "child_process": "^1.0.2",
+    "got": "^11.7.0",
+    "log4js": "^6.3.0",
+    "node-html-to-image": "^3.1.0",
+    "request": "^2.88.2",
+    "rss-parser": "^3.9.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3",
+    "uuid": "^8.3.1",
+    "websocket": "^1.0.32"
+  }
+}
