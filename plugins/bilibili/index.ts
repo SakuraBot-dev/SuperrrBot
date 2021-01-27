@@ -112,3 +112,39 @@ commander.reg({
     reply(t.join('\n'));
   }
 })
+
+commander.reg({
+  cmd: /^今日新番$/gm,
+  helper: '今日新番   查看今日新番',
+  private: true,
+  group: true,
+  globalAdmin_require: false,
+  groupAdmin_require: false,
+  owner_require: false
+}, async (m: Array<string>, e: any, reply: Function) => {
+  const data: any = await bili.bangumi.today();
+  const mapping: any = {
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+    6: '六',
+    7: '日'
+  };
+
+  if(data) {
+    const week: string = mapping[data.day_of_week] || data.day_of_week;
+    const msg: string[] = [];
+
+    msg.push(`今天是 星期${week}, 将有 ${Object.keys(data.seasons).length} 部新番放送！`)
+
+    Object.values(data.seasons).forEach((e: any) => {
+      msg.push(`《${e.title}》将于 ${e.pub_time} 更新 ${e.pub_index}`)
+    });
+
+    reply(msg.join('\n'));
+  } else {
+    reply('[Bilibili] 读取失败');
+  }
+})

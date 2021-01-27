@@ -1,7 +1,8 @@
-import { commander } from '../../lib/api'
+import { api, commander, logger } from '../../lib/api'
 import netease from './api/netease';
 import utils from './api/utils';
 import { searchImage } from './api/img';
+import { setu } from './api/setu';
 
 commander.reg({
   cmd: /^\.echo (.*)/,
@@ -13,6 +14,36 @@ commander.reg({
   owner_require: false
 }, async (m: Array<string>, e: any, reply: Function) => {
 	reply(m[1], false);
+});
+
+commander.reg({
+  cmd: /^.*\[CQ:at,qq=(\d+)\].*\/(\S+)$/,
+  helper: '/xxx     整活',
+  private: true,
+  group: true,
+  globalAdmin_require: false,
+  groupAdmin_require: false,
+  owner_require: false
+}, async (m: Array<string>, e: any, reply: Function) => {
+  logger.info(JSON.stringify(m));
+  const result = await api.http.OneBot.group.getMemberInfo(e.group_id, Number(m[1]));
+  logger.info(JSON.stringify(result));
+  reply(`${e.sender.nickname} ${m[2]}了 ${result.data.nickname}!`, false);
+});
+
+commander.reg({
+  cmd: /^.*\[CQ:at,qq=(\d+)\].*\/(\S+) (\S+)$/,
+  helper: '/xxx xxx     整活',
+  private: true,
+  group: true,
+  globalAdmin_require: false,
+  groupAdmin_require: false,
+  owner_require: false
+}, async (m: Array<string>, e: any, reply: Function) => {
+  logger.info(JSON.stringify(m));
+  const result = await api.http.OneBot.group.getMemberInfo(e.group_id, Number(m[1]));
+  logger.info(JSON.stringify(result));
+  reply(`${e.sender.nickname} ${m[2]} ${result.data.nickname} ${m[3]}!`, false);
 });
 
 commander.reg({
@@ -98,4 +129,27 @@ commander.reg({
   }
   
   reply(`[CQ:image, file=${result.url}]${result.title}`);
+});
+
+commander.reg({
+  cmd: /^涩图来$/,
+  helper: '涩图来		康涩图！',
+  private: true,
+  group: true,
+  globalAdmin_require: false,
+  groupAdmin_require: false,
+  owner_require: false
+}, async (m: Array<string>, e: any, reply: Function) => {
+  const result = await setu();
+  if(result.code === 0) {
+    const tags: string[] = [];
+
+    result.data[0].tags.forEach((element: string) => {
+      tags.push(`#${element}`);
+    });
+
+    reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+  } else {
+    reply('[Setu] ¿')
+  }
 });

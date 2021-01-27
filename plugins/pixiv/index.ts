@@ -28,6 +28,7 @@ commander.reg({
       // `[CQ:image,file=base64://${await getImg(url.replace('i.pximg.net', 'i.pixiv.cat'))}]`,
       `[CQ:image,file=${url.replace('i.pximg.net', 'i.pixiv.cat')}]`,
       result.title,
+      `https://pixiv.net/i/${result.id}`,
       tags.join(' ')
     ].join('\n'))
   })

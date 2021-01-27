@@ -2,7 +2,7 @@
   "name": "pixiv-box",
   "version": "1.0.0",
   "description": "",
-  "main": "app",
+  "main": "index",
   "author": "涂山苏苏",
   "license": "Apache-2.0",
   "packagename": "xyz.imoe.pix"
