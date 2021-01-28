@@ -1,6 +1,9 @@
 const plugins:any = {
   "xyz.imoe.rss": {
     timer: process.env.PLUGIN_RSS_TIMER || 1.2e5
+  },
+  "xyz.imoe.bangumi": {
+    app_id: process.env.PLUGIN_BANGUMI_APPID
   }
 }
 
