@@ -16,7 +16,7 @@ $ docker run --name SuperrrBot -e BOT_OWNER="你自己的QQ号" -e CONN_TOKEN="c
 ### Linux
 安装依赖
 ```shell
-$ npm run build
+$ npm i
 ```
 
 构建程序
