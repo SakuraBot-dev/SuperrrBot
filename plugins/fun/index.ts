@@ -3,6 +3,7 @@ import netease from './api/netease';
 import utils from './api/utils';
 import { searchImage } from './api/img';
 import { setu } from './api/setu';
+import { config } from "../../lib/api";
 
 commander.reg({
   cmd: /^\.echo (.*)/,
@@ -148,7 +149,14 @@ commander.reg({
       tags.push(`#${element}`);
     });
 
-    reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+    const message_body = await reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+    
+    const timeout = config.timeout;
+    if(timeout != -1) 
+      setTimeout(function() {
+        api.socket.message.delete_msg(message_body.message_id);
+      },timeout * 1000);
+
   } else {
     reply('[Setu] ¿')
   }
