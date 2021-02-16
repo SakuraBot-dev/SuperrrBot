@@ -4,6 +4,9 @@ const plugins:any = {
   },
   "xyz.imoe.bangumi": {
     app_id: process.env.PLUGIN_BANGUMI_APPID
+  },
+  "xyz.imoe.fun":{
+    timeout: 20
   }
 }
 

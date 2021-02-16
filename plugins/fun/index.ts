@@ -1,4 +1,4 @@
-import { api, commander, logger } from '../../lib/api'
+import { api, commander, logger, config } from '../../lib/api'
 import netease from './api/netease';
 import utils from './api/utils';
 import { searchImage } from './api/img';
@@ -148,7 +148,14 @@ commander.reg({
       tags.push(`#${element}`);
     });
 
-    reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+    const message_body = await reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+    
+    const timeout = config.timeout;
+    if(timeout != -1) 
+      setTimeout(function() {
+        api.socket.message.delete_msg(message_body.message_id);
+      },timeout * 1000);
+
   } else {
     reply('[Setu] ¿')
   }

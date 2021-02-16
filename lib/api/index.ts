@@ -486,7 +486,8 @@ export const commander = {
           const m = command.cmd.exec(msg);
           
           const reply = (msg: string, auto_escape: boolean) => {
-            api.socket.message.sendGroupMessage(group, msg, auto_escape);
+            const returnmess = api.socket.message.sendGroupMessage(group, msg, auto_escape);
+            return returnmess;
           }
 
           if(!command.owner_require && !command.globalAdmin_require && !command.groupAdmin_require){
