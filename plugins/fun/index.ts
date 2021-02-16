@@ -1,9 +1,8 @@
-import { api, commander, logger } from '../../lib/api'
+import { api, commander, logger, config } from '../../lib/api'
 import netease from './api/netease';
 import utils from './api/utils';
 import { searchImage } from './api/img';
 import { setu } from './api/setu';
-import { config } from "../../lib/api";
 
 commander.reg({
   cmd: /^\.echo (.*)/,
