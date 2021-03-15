@@ -128,7 +128,7 @@ commander.reg({
     return reply('没有搜索到任何结果');
   }
   
-  reply(`[CQ:image, file=${result.url}]${result.title}`);
+  reply(`[CQ:image,file=${result.url}]${result.title}`);
 });
 
 commander.reg({
@@ -148,7 +148,7 @@ commander.reg({
       tags.push(`#${element}`);
     });
 
-    const message_body = await reply(`[CQ:image, file=${result.data[0].url}] ${tags.join(' ')}`);
+    const message_body = await reply(`[CQ:image,file=${result.data[0].url}] ${tags.join(' ')}`);
     
     const timeout = config.timeout;
     if(timeout != -1) 
