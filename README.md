@@ -1,11 +1,25 @@
-# SuperBot v3
-一个普通的跨平台机器人
+# SuperrrBotV3
 
-[文档](./docs)
+> 作者自己的一份SuperBot实例
 
-ToDo：
-- [x] OneBot
-- [x] Telegram
-- [ ] Discord
-- [ ] IIROSE
-- [ ] 开发文档（进行中）
+## 食用方法
+
+### Linux
+
+安装依赖
+
+```shell
+$ npm install
+```
+
+构建程序
+
+```shell
+$ npm run build
+```
+
+启动
+
+```shell
+$ node ./dist/app.js
+```
