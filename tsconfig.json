@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "resolveJsonModule": true,
+    "target": "es2020",
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true
+    "forceConsistentCasingInFileNames": true
   }
 }

@@ -1,0 +1,5 @@
+{
+  "name": "一些小工具",
+  "entry": "index",
+  "packagename": "xyz.imoe.tools"
+}

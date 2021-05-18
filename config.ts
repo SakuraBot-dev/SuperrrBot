@@ -1,25 +1,44 @@
-const plugins:any = {
-  "xyz.imoe.rss": {
-    timer: process.env.PLUGIN_RSS_TIMER || 1.2e5
+import fs from 'fs'
+import pack from './package.json'
+
+const configPath = './config.json'
+
+const defaultConfig = {
+  version: pack.version,
+  master: {
+    OneBot: 0,
+    telegram: 0
   },
-  "xyz.imoe.bangumi": {
-    app_id: process.env.PLUGIN_BANGUMI_APPID
+  app: {
+    OneBot: {
+      enable: false,
+      host: '',
+      port: '',
+      accessToken: ''
+    },
+    telegram: {
+      enable: false,
+      token: ''
+    }
+  },
+  logger: {
+    level: 'INFO'
   }
 }
 
-export default {
-  bot: {
-    owner: Number(process.env.BOT_OWNER)
-  },
-  connect: {
-    token: process.env.CONN_TOKEN,
-    host: process.env.CONN_HOST,
-    ws_port: process.env.CONN_WS_PORT || 6700,
-    http_port: process.env.CONN_HTTP_PORT || 5700,
-    reconnect: process.env.CONN_RECONNECT || 3e3
-  },
-  logger: {
-    level: process.env.LOG_LEVEL || "INFO"
-  },
-  plugins
+if (!fs.existsSync(configPath)) {
+  fs.writeFileSync(configPath, JSON.stringify(defaultConfig, undefined, 4))
+  console.log('默认配置创建完成，请修改 config.json 后重新启动程序')
+  process.exit(0)
+} else {
+  const conf = JSON.parse(fs.readFileSync('./config.json').toString())
+  if (!conf.version || conf.version !== pack.version) {
+    const newConf = Object.assign(defaultConfig, conf)
+    newConf.version = pack.version
+    fs.writeFileSync(configPath, JSON.stringify(newConf, undefined, 4))
+    console.log('配置文件版本不匹配，已更新完成，请参考 README.md 手动修改后重新启动程序')
+    process.exit(0)
+  }
 }
+
+export default JSON.parse(fs.readFileSync('./config.json').toString())

@@ -1,9 +1,0 @@
-{
-  "name": "RSS订阅器",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index",
-  "author": "涂山苏苏",
-  "license": "Apache-2.0",
-  "packagename": "xyz.imoe.rss"
-}

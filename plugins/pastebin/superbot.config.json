@@ -1,0 +1,5 @@
+{
+  "name": "Ubuntu pastebin",
+  "entry": "index",
+  "packagename": "xyz.imoe.pastebin"
+}
